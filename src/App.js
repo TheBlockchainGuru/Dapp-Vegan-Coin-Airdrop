@@ -1,15 +1,116 @@
+import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Container, Row, Col } from 'react-bootstrap';
+import Web3 from 'web3';
+import { RPCURL, tokenAddress, tokenABI } from './config';
 
-function App() {
+const web3     = new Web3(new Web3.providers.HttpProvider(RPCURL));
+const tokenContract =  new web3.eth.Contract(tokenABI, tokenAddress)
+class App extends Component {
+
+  constructor(props){
+      super(props)
+      this.state={
+        airdropAddress : '',
+        buttonLabel    : 'Please connect Wallet and Claim Vegan token',
+        airDropped     : false,
+        leftTime       : 0,
+        tokenContract : []
+      }
+    } 
+
+  async componentWillMount() {
+    let Contract
+    let time = await tokenContract.methods.airdropTime().call()
+    this.setState({
+      leftTime : time / 1
+    })
+    if(window.ethereum) {
+        window.web3 = new Web3(window.ethereum)
+        await window.ethereum.enable()
+        const clientWeb3    = window.web3;
+        const accounts = await clientWeb3.eth.getAccounts();
+        this.setState({
+          airdropAddress : accounts[0] + ''
+        }) 
+        Contract = new clientWeb3.eth.Contract(tokenABI, tokenAddress);
+        this.setState({
+          tokenContract : Contract
+        })
+    } 
+
+    else if(window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider)
+        const clientWeb3    = window.web3;
+        const accounts = await clientWeb3.eth.getAccounts();
+        this.setState({
+          airdropAddress : accounts[0] + ''
+        })
+        Contract = new clientWeb3.eth.Contract(tokenABI, tokenAddress);
+        this.setState({
+          tokenContract : Contract
+        })
+    } else {
+        window.alert('Non-Ethereum browser detected. Your should consider trying MetaMask!')
+    }
+    this.check(this.state.airdropAddress) 
+    this.caputreAddress()
+  }
+
+
+  async caputreAddress(){
+      setInterval(async () => {
+        const clientWeb3    = window.web3;
+        const accounts = await clientWeb3.eth.getAccounts();
+        let address = web3.eth.airdropAddress
+        if (address != accounts[0]) {
+          await this.setState({
+            airdropAddress : accounts[0] + ''
+          })
+          this.check(this.state.airdropAddress) 
+        }
+      }, 2000);
+  }
+
+  async check(address){
+    let flag
+    try{
+      flag = await tokenContract.methods.airDroped(address).call()
+    }catch(err){
+    }
+    if(flag === true){
+      this.setState({
+        buttonLabel : "You Already Receieved Vegan Token Airdrop.",
+        airDropped  : true
+      })
+    } else {
+      this.setState({
+        buttonLabel : "Please Claim and receieve 1 milion of Vegan Tokens",
+        airDropped  : false
+      })
+    }
+  }
+
+  async airdrop(){
+    await this.state.tokenContract.methods.airdrop().send({
+                from : this.state.airdropAddress,
+            }).once('confirmation', () => {
+              alert("successful airdropped!")
+            })
+  }
+
+  render () {
   return (
     <div>
       <Container>
         <Row id="first-section">
           <Col lg="7" md="12" sm="12" xs="12">
             <div id="drop-button">
-              <Button variant={'warning'}>Claim 1 million FREE Vegan Rob's Coins</Button>
+              <Button variant={'warning'} onClick = {()=> this.airdrop()} disabled ={this.state.airDropped}>{this.state.buttonLabel}</Button>
+              <p>{this.state.airdropAddress}</p>
+              <p>AirDrop Left : {this.state.leftTime} </p>
+              
             </div>
             <div id="section_1">
               <h1>Vegan Rob's Coin</h1>
@@ -131,5 +232,5 @@ function App() {
     </div>
   );
 }
-
+}
 export default App;

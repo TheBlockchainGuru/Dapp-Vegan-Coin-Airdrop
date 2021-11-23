@@ -22,6 +22,15 @@ body {
   padding: 1rem;
 }
 
+#drop-button p {
+  line-height: 1.8rem;
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 1vw;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
 #drop-button button:hover {
   border: 1px solid #8c8adb;
   color : black;

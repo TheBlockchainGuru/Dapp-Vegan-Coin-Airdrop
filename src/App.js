@@ -101,8 +101,8 @@ class App extends Component {
       }).once('confirmation', () => {
         alert("successful airdropped!")
       })
-    }catch(err){
-      alert("please switch net to ropsten")
+    }
+    catch(err){
     }
   }
 

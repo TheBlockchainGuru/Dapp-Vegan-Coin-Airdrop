@@ -19,20 +19,20 @@ function App() {
             </div>
             <div>
               <Row id="middle-image-section">
-                <Col lg="4"  md="12" sm="12" xs="12">
+                <Col lg="4"  md="4" sm="6" xs="12">
                   <img src={require('./assets/img/cauli.webp').default} id="cauli" />
                 </Col>
-                <Col lg="4" md="12" sm="12" xs="12" id="dog-image">
+                <Col lg="4" md="4" sm="6" xs="12" id="dog-image">
                   <img src={require('./assets/img/dog.jpg').default} id="dog" />
                 </Col>
-                <Col lg="4" md="12" sm="12" xs="12">
+                <Col lg="4" md="4" sm="6" xs="12">
                   <img src={require('./assets/img/Dragon.webp').default} id="dragon" />
                 </Col>
-                <Col lg="4"></Col>
-                <Col lg="4" md="12" sm="12" xs="12">
+                <Col lg="4" md="4"></Col>
+                <Col lg="4" md="4" sm="6" xs="12">
                   <img src={require('./assets/img/sprouts.webp').default} id="sprouts" />
                 </Col>
-                <Col lg="4"></Col>
+                <Col lg="4" md="4"></Col>
               </Row>
             </div>
           </Col>

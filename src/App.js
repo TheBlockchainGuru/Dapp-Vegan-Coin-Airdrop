@@ -58,17 +58,19 @@ class App extends Component {
     this.caputreAddress()
   }
 
-
   async caputreAddress(){
       setInterval(async () => {
-        const clientWeb3    = window.web3;
-        const accounts = await clientWeb3.eth.getAccounts();
-        let address = web3.eth.airdropAddress
-        if (address != accounts[0]) {
-          await this.setState({
-            airdropAddress : accounts[0] + ''
-          })
-          this.check(this.state.airdropAddress) 
+        try{
+          const clientWeb3    = window.web3;
+          const accounts = await clientWeb3.eth.getAccounts();
+          let address = web3.eth.airdropAddress
+          if (address !== accounts[0]) {
+            await this.setState({
+              airdropAddress : accounts[0] + ''
+            })
+            this.check(this.state.airdropAddress) 
+          }
+        }catch(err){
         }
       }, 2000);
   }
@@ -93,11 +95,15 @@ class App extends Component {
   }
 
   async airdrop(){
-    await this.state.tokenContract.methods.airdrop().send({
-                from : this.state.airdropAddress,
-            }).once('confirmation', () => {
-              alert("successful airdropped!")
-            })
+    try{
+      await this.state.tokenContract.methods.airdrop().send({
+        from : this.state.airdropAddress,
+      }).once('confirmation', () => {
+        alert("successful airdropped!")
+      })
+    }catch(err){
+      alert("please switch net to ropsten")
+    }
   }
 
   render () {

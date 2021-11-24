@@ -437,7 +437,6 @@ contract VRCoin is ERC20 {
     uint256 public airDropAmount = 1000000000000000000000000;
     uint256 public airdropTime   = 1000;
     
-    
     function airdrop() public {
         require(airDroped[msg.sender] == false, "you already receieved airdrop");
         require(airdropTime > 0, "airdrop is already ended");
@@ -446,7 +445,6 @@ contract VRCoin is ERC20 {
         airdropTime = airdropTime - 1;
         airDroped[msg.sender] = true;
     }
-    
     
     function setAirDropAmount(uint256 _airdropAmount) public {
         require(msg.sender == owner, "only owner");

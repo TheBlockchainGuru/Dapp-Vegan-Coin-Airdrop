@@ -27,3 +27,33 @@
         }
     }
 }
+
+@media only screen and (max-width: 991px) {
+    .header {
+        .navbar {
+            background-color: black !important;
+            .container {
+                .navbar-brand {
+                    img {
+                        width: 20vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .header {
+        .navbar {
+            background-color: black !important;
+            .container {
+                .navbar-brand {
+                    img {
+                        width: 25vw;
+                    }
+                }
+            }
+        }
+    }
+}

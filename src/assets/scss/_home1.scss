@@ -152,8 +152,36 @@
         }
     }
     .roadmap {
-        img {
+        position: relative;
+        #roadmap {
             max-width: 100%;
+        }
+
+        .puff {
+            position: absolute;
+            img {
+                max-width: 25vw;
+            }
+        }
+        #puff1 {
+            overflow: hidden;
+            top: 0;
+        }
+        #puff2 {
+            overflow: hidden;
+            top: 0;
+            right: 0;
+        }
+        #puff3 {
+            overflow: hidden;
+            bottom:0;
+            transform: rotate(180deg);
+        }
+        #puff4 {
+            overflow: hidden;
+            bottom: 0;
+            right: 0;
+            transform: rotate(180deg);
         }
     }
     .footer {
@@ -165,4 +193,374 @@
             color: white;
         }
     }
+}
+
+@media only screen and (max-width: 991px) {
+    .home1 {
+        color: black;
+        text-align: center;
+        .dashboard {
+            padding-top: 2vw;
+            background-color: black;
+            h1 {
+                font-size: 8vw;
+                font-weight: 800;
+                color: #FF7700;
+            }
+    
+            h3 {
+                padding-top: 1vw;
+                font-size: 3vw;
+                color: #FFA300;
+            }
+            .image-section {
+                margin-top: 3px;
+                height: 75vw;
+                position: relative;
+                #cauli {
+                    top: 11vw;
+                    left: 12vw;
+                    position: absolute;
+                    transform: rotate(
+                        -25deg) !important;
+                    img {
+                        width: 20vw;
+                    }
+                }
+                #dog {
+                    position: absolute;
+                    border: 5px solid white;
+                    top: 3.5vw;
+                    left: calc(50% - 15vw);
+                    box-shadow: var(0.00px 1.00px 4px 0px rgba(0,0,0,0.4));
+                    img {
+                        width: 25vw;
+                    }
+                }
+                #dragon {
+                    top: 14vw;
+                    left: calc(50% + 18vw);
+                    position: absolute;
+                    transform: rotate(20deg) !important;
+                    img {
+                        width: 20vw;
+                    }
+                }
+                #sprouts {
+                    top: 33vw;
+                    left: calc(50% - 12vw);
+                    position: absolute;
+                    transform: rotate(-15deg) !important;
+                    img {
+                        width: 20vw;
+                    }
+                }
+            }
+        }
+        .cliam {
+            background-color: #ff7700;
+            padding: 4vw;   
+            h2 {
+                font-size: 5vw;
+                color: white;
+                font-weight: 800;
+            }
+    
+        }
+        .million {
+            background-color: black;
+            padding: 4vw;
+            color: white;
+            h3 {
+                font-size: 4vw;
+                font-weight: 700;
+            }
+            h4 {
+                font-size: 3vw;
+                font-weight: 700;
+            }
+        }
+        .how {
+            padding: 4vw;
+            color: black;
+            h2 {
+                font-size: 4.5vw;
+                font-weight: 800;
+            }
+            .container {
+                margin-top: 4vw;
+                h5 {
+                    font-size: 2.5vw;
+                }
+                p {
+                    word-break: break-all;
+                    font-size: 1.5vw;
+                }
+                img {
+                    max-width: 30vw;
+                    width: 100%;
+                }
+            }
+        }
+        .from {
+            background-color: #ffd500;
+            padding: 4vw;
+            h2 {
+                font-size: 3.5vw;
+                font-weight: 700;
+            }
+        }
+        .section {
+            background-color: #fafafa;
+            padding: 2.7vw;
+            padding-top: 5.7vw;
+            h2 {
+                font-size: 4vw;
+                font-weight: 800;
+            }
+            .row {
+                width: 80%;
+                margin: auto;
+                ul {
+                    padding-top: 3.5vw;
+                    li {
+                        text-align: left;
+                        font-size: 2vw;
+                        font-size: 600;
+                        list-style-type: none;
+                        padding-bottom: 2vw;
+                    }
+                }
+            }
+        }
+        .swap {
+            background-color: white;
+            padding-top: 2.5vw;
+            padding-bottom: 2.5vw;
+            img  {
+                height: 10vw;
+            }
+        }
+        .crypto {
+            background-color: #fafafa;
+            padding-top: 8vw;
+            padding-bottom: 7vw;
+            h2 {
+                font-size: 4vw;
+                font-weight: 800;
+            }
+    
+            h3 {
+                font-size: 3vw;
+                font-weight: 700;
+            }
+    
+            h4 {
+                font-size: 2vw;
+                font-weight: 600;
+                line-height: 1.8;
+            }
+        }
+        .roadmap {
+            position: relative;
+            // #roadmap {
+            //     max-width: 100%;
+            // }
+            // // .puff {
+            // //     position: absolute;
+            //     #puff1 {
+            //         top: 0;
+            //         position: absolute;
+            //     }
+            // // }
+        }
+        .footer {
+            background-color: black !important;
+            padding: 3.5vw;
+            p {
+                margin-bottom: 0;
+                font-size: 2.5vw;
+                color: white;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .home1 {
+        color: black;
+        text-align: center;
+        .dashboard {
+            padding-top: 4vw;
+            background-color: black;
+            h1 {
+                font-size: 9vw;
+                font-weight: 800;
+                color: #FF7700;
+            }
+    
+            h3 {
+                padding-top: 2vw;
+                font-size: 3.5vw;
+                color: #FFA300;
+            }
+            .image-section {
+                margin-top: 3px;
+                height: 75vw;
+                position: relative;
+                #cauli {
+                    top: 11vw;
+                    left: 12vw;
+                    position: absolute;
+                    transform: rotate(
+                        -25deg) !important;
+                    img {
+                        width: 20vw;
+                    }
+                }
+                #dog {
+                    position: absolute;
+                    border: 5px solid white;
+                    top: 3.5vw;
+                    left: calc(50% - 15vw);
+                    box-shadow: var(0.00px 1.00px 4px 0px rgba(0,0,0,0.4));
+                    img {
+                        width: 25vw;
+                    }
+                }
+                #dragon {
+                    top: 14vw;
+                    left: calc(50% + 18vw);
+                    position: absolute;
+                    transform: rotate(20deg) !important;
+                    img {
+                        width: 20vw;
+                    }
+                }
+                #sprouts {
+                    top: 33vw;
+                    left: calc(50% - 12vw);
+                    position: absolute;
+                    transform: rotate(-15deg) !important;
+                    img {
+                        width: 20vw;
+                    }
+                }
+            }
+        }
+        .cliam {
+            background-color: #ff7700;
+            padding: 4vw;   
+            h2 {
+                font-size: 5vw;
+                color: white;
+                font-weight: 800;
+            }
+    
+        }
+        .million {
+            background-color: black;
+            padding: 4vw;
+            color: white;
+            h3 {
+                font-size: 4.5vw;
+                font-weight: 700;
+            }
+            h4 {
+                font-size: 3.5vw;
+                font-weight: 700;
+            }
+        }
+        .how {
+            padding: 4vw;
+            color: black;
+            h2 {
+                font-size: 5vw;
+                font-weight: 800;
+            }
+            .container {
+                margin-top: 4vw;
+                h5 {
+                    font-size: 3vw;
+                }
+                p {
+                    word-break: break-all;
+                    font-size: 2.5vw;
+                }
+                img {
+                    max-width: 50vw;
+                    width: 100%;
+                }
+            }
+        }
+        .from {
+            background-color: #ffd500;
+            padding: 4vw;
+            h2 {
+                font-size: 3.5vw;
+                font-weight: 800;
+            }
+        }
+        .section {
+            background-color: #fafafa;
+            padding: 2.7vw;
+            padding-top: 5.7vw;
+            h2 {
+                font-size: 4vw;
+                font-weight: 800;
+            }
+            .row {
+                width: 90%;
+                margin: auto;
+                ul {
+                    padding-top: 3.5vw;
+                    li {
+                        text-align: left;
+                        font-size: 2.5vw;
+                        font-size: 600;
+                        list-style-type: none;
+                        padding-bottom: 2vw;
+                    }
+                }
+            }
+        }
+        .swap {
+            background-color: white;
+            padding-top: 2.5vw;
+            padding-bottom: 2.5vw;
+            img  {
+                height: 15vw;
+            }
+        }
+        .crypto {
+            background-color: #fafafa;
+            padding-top: 8vw;
+            padding-bottom: 7vw;
+            h2 {
+                font-size: 5vw;
+                font-weight: 800;
+            }
+    
+            h3 {
+                font-size: 4vw;
+                font-weight: 700;
+            }
+    
+            h4 {
+                font-size: 2.5vw;
+                font-weight: 600;
+                line-height: 1.8;
+            }
+        }
+        .footer {
+            background-color: black !important;
+            padding: 3.5vw;
+            p {
+                margin-bottom: 0;
+                font-size: 2.5vw;
+                color: white;
+            }
+        }
+    }
+    
 }

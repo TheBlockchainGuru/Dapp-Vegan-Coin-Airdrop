@@ -163,8 +163,20 @@ const Home1 = () => {
                 </div>
                 <div className="roadmap">
                     <Fade right duration={3000}>
-                        <img src={require('../assets/img/roadmap.webp').default} />
+                        <img src={require('../assets/img/roadmap.webp').default} id="roadmap" />
                     </Fade>
+                    <div className="puff" id="puff1">
+                        <img src={require('../assets/img/puff.webp').default} />
+                    </div>
+                    <div className="puff" id="puff2">
+                        <img src={require('../assets/img/puff.webp').default} />
+                    </div>
+                    <div className="puff" id="puff3">
+                        <img src={require('../assets/img/puff.webp').default} />
+                    </div>
+                    <div className="puff" id="puff4">
+                        <img src={require('../assets/img/puff.webp').default} />
+                    </div>
                 </div>
                 <div className="footer">
                     <p>

@@ -24,7 +24,6 @@ const Header = () => {
                             </NavDropdown> */}
                         </Nav>
                         <Nav>
-                            <Link to="/home1" className={pathname == '/home1' ? 'active nav-link' : 'nav-link'}>New Home</Link>
                             <Link to="/home" className={pathname == '/home' ? 'active nav-link' : 'nav-link'}>Home</Link>
                             <Nav.Link href="#home">
                                 <img src={require('../assets/img/twitter.svg').default} />

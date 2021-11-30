@@ -178,8 +178,8 @@ class Home extends React.Component {
                                 </Col>
                                 <Col lg="4" md="4" sm="12">
                                     <h5>Buy Vegan Rob's Coin on Pancake Swap!</h5>
-                                    <p>Just search "Vegan Rob's Coin" or copy our contract  address</p>
-                                    <p>0x001a8ffcb0f03e99141652ebcdecdb0384e3bd6c</p>
+                                    <p>Just search "Vegan Rob's Coin" or copy our contract address</p>
+                                    <p>0x5AffD40019BEf91c23349Bf4780904c000c2E21A</p>
                                     <img src={require('../assets/img/pcswap.webp').default} />
                                 </Col>
                             </Row>

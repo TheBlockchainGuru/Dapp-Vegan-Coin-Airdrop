@@ -159,7 +159,7 @@ class Home extends React.Component {
                         <Fade right duration={3000}>
                             <h3>1 million Free Coins </h3>
                             <h3>Early Adopters get 1 million coins for free!</h3>
-                            <h4>It's not too late for you! Click the button above to cliam your coins!</h4>
+                            <h4>It's not too late for you! Click the button above to claim your coins!</h4>
                         </Fade>
                     </div>
                     <div className="how">

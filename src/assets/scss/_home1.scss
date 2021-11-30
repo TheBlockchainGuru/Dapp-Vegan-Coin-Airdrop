@@ -1,4 +1,5 @@
 .home1 {
+    color: black;
     text-align: center;
     .dashboard {
         padding-top: 20px;
@@ -16,10 +17,39 @@
         }
         .image-section {
             margin-top: 30px;
+            height: 100vh;
+            position: relative;
+            #cauli {
+                top: 6rem;
+                left: calc(50% - 25rem);
+                position: absolute;
+                transform: rotate(
+                    -25deg) !important;
+                width: 15vw;
+            }
+            #dog {
+                position: absolute;
+                border: 5px solid white;
+                top: 2rem;
+                left: calc(50% - 8rem);
+                box-shadow: var(0.00px 1.00px 4px 0px rgba(0,0,0,0.4));
+            }
+            #dragon {
+                top: 8rem;
+                left: calc(50% + 9rem);
+                position: absolute;
+                transform: rotate(20deg) !important;
+            }
+            #sprouts {
+                top: 22rem;
+                left: calc(50% - 8rem);
+                position: absolute;
+                transform: rotate(-15deg) !important;
+            }
         }
     }
     .cliam {
-        background-color: #FFA300;
+        background-color: #ff7700;
         padding: 39px;
         h2 {
             font-size: 50px;
@@ -47,6 +77,83 @@
         h2 {
             font-size: 45px;
             font-weight: 800;
+        }
+        .container {
+            margin-top: 40px;
+            h5 {
+                font-size: 25px;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+    .from {
+        background-color: #ffd500;
+        padding: 40px;
+        h2 {
+            font-size: 35px;
+            font-weight: 700;
+        }
+    }
+    .section {
+        background-color: #fafafa;
+        padding: 27px;
+        padding-top: 57px;
+        h2 {
+            font-size: 40px;
+            font-weight: 800;
+        }
+        .row {
+            width: 80%;
+            margin: auto;
+            ul {
+                padding-top: 2rem;
+                li {
+                    text-align: left;
+                    font-size: 20px;
+                    font-size: 600;
+                    list-style-type: none;
+                    padding-bottom: 20px;
+                }
+            }
+        }
+    }
+    .swap {
+        background-color: white;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        img  {
+            height: 6rem;
+        }
+    }
+    .crypto {
+        background-color: #fafafa;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+        h2 {
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        h3 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+    }
+    .footer {
+        background-color: black !important;
+        padding: 2rem;
+        p {
+            margin-bottom: 0;
+            font-size: 1.5rem;
+            color: white;
         }
     }
 }

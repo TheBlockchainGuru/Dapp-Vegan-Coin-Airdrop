@@ -16,32 +16,35 @@
             color: #FFA300;
         }
         .image-section {
-            margin-top: 30px;
-            height: 750px;
+            margin-top: 80px;
+            height: 800px;
             position: relative;
             #cauli {
-                top: 100px;
-                left: calc(50% - 400px);
+                top: 190px;
+                left: calc(50% - 450px);
                 position: absolute;
                 transform: rotate(
                     -25deg) !important;
-                width: 15vw;
+                // width: 15vw;
             }
             #dog {
                 position: absolute;
                 border: 5px solid white;
                 top: 32px;
-                left: calc(50% - 128px);
+                left: calc(50% - 170px);
                 box-shadow: var(0.00px 1.00px 4px 0px rgba(0,0,0,0.4));
+                img {
+                    width: 350px;
+                }
             }
             #dragon {
-                top: 128px;
-                left: calc(50% + 144px);
+                top: 212px;
+                left: calc(50% + 217px);
                 position: absolute;
                 transform: rotate(20deg) !important;
             }
             #sprouts {
-                top: 352px;
+                top: 450px;
                 left: calc(50% - 128px);
                 position: absolute;
                 transform: rotate(-15deg) !important;

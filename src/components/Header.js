@@ -1,7 +1,8 @@
 import { Navbar, Container, Nav , NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+    const pathname = useLocation().pathname
     return (
         <div className="header">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -23,8 +24,8 @@ const Header = () => {
                             </NavDropdown> */}
                         </Nav>
                         <Nav>
-                            <Link to="/home1" className="nav-link">New Home</Link>
-                            <Link to="/home" className="nav-link">Home</Link>
+                            <Link to="/home1" className={pathname == '/home1' ? 'active nav-link' : 'nav-link'}>New Home</Link>
+                            <Link to="/home" className={pathname == '/home' ? 'active nav-link' : 'nav-link'}>Home</Link>
                             <Nav.Link href="#home">
                                 <img src={require('../assets/img/twitter.svg').default} />
                             </Nav.Link>

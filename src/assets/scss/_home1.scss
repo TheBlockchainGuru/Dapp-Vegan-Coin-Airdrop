@@ -17,7 +17,7 @@
         }
         .image-section {
             margin-top: 30px;
-            height: 100vh;
+            height: 750px;
             position: relative;
             #cauli {
                 top: 6rem;
@@ -84,7 +84,11 @@
                 font-size: 25px;
             }
             p {
+                word-break: break-all;
                 font-size: 1rem;
+            }
+            img {
+                width: 100%;
             }
         }
     }
@@ -145,6 +149,11 @@
             font-size: 20px;
             font-weight: 600;
             line-height: 1.8;
+        }
+    }
+    .roadmap {
+        img {
+            max-width: 100%;
         }
     }
     .footer {

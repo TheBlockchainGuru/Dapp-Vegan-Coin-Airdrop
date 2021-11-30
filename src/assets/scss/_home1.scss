@@ -1,0 +1,52 @@
+.home1 {
+    text-align: center;
+    .dashboard {
+        padding-top: 20px;
+        background-color: black;
+        h1 {
+            font-size: 80px;
+            font-weight: 800;
+            color: #FF7700;
+        }
+
+        h3 {
+            padding-top: 10px;
+            font-size: 1.75em;
+            color: #FFA300;
+        }
+        .image-section {
+            margin-top: 30px;
+        }
+    }
+    .cliam {
+        background-color: #FFA300;
+        padding: 39px;
+        h2 {
+            font-size: 50px;
+            color: white;
+            font-weight: 800;
+        }
+
+    }
+    .million {
+        background-color: black;
+        padding: 39px;
+        color: white;
+        h3 {
+            font-size: 40px;
+            font-weight: 700;
+        }
+        h4 {
+            font-size: 29px;
+            font-weight: 700;
+        }
+    }
+    .how {
+        padding: 39px;
+        color: black;
+        h2 {
+            font-size: 45px;
+            font-weight: 800;
+        }
+    }
+}

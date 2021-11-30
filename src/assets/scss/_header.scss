@@ -1,0 +1,29 @@
+.header {
+    .navbar {
+        background-color: black !important;
+        .container {
+            .navbar-collapse {
+                .navbar-nav {
+                    a {
+                        color: white;
+                        margin: auto;
+                        font-weight: 700;
+                        font-size: 1.2rem;
+                        img {
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+
+                    a:hover {
+                        color : #FF7700;
+                    }
+
+                    .active {
+                        color: #FF7700;
+                    }
+                }
+            }
+        }
+    }
+}

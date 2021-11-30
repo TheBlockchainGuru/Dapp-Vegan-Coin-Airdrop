@@ -226,45 +226,45 @@
                 color: #FFA300;
             }
             .image-section {
-                margin-top: 3px;
-                height: 75vw;
+                margin-top: 5vw;
+                height: 93vw;
                 position: relative;
                 #cauli {
-                    top: 11vw;
-                    left: 12vw;
+                    top: 20vw;
+                    left: 5vw;
                     position: absolute;
                     transform: rotate(
                         -25deg) !important;
                     img {
-                        width: 20vw;
+                        width: 25vw;
                     }
                 }
                 #dog {
                     position: absolute;
                     border: 5px solid white;
-                    top: 3.5vw;
-                    left: calc(50% - 15vw);
+                    top: 5.5vw;
+                    left: calc(50% - 17.5vw);
                     box-shadow: var(0.00px 1.00px 4px 0px rgba(0,0,0,0.4));
+                    img {
+                        width: 35vw;
+                    }
+                }
+                #dragon {
+                    top: 23vw;
+                    left: calc(50% + 20vw);
+                    position: absolute;
+                    transform: rotate(20deg) !important;
                     img {
                         width: 25vw;
                     }
                 }
-                #dragon {
-                    top: 14vw;
-                    left: calc(50% + 18vw);
-                    position: absolute;
-                    transform: rotate(20deg) !important;
-                    img {
-                        width: 20vw;
-                    }
-                }
                 #sprouts {
-                    top: 33vw;
+                    top: 50vw;
                     left: calc(50% - 12vw);
                     position: absolute;
                     transform: rotate(-15deg) !important;
                     img {
-                        width: 20vw;
+                        width: 30vw;
                     }
                 }
             }
@@ -421,49 +421,45 @@
                 color: #FFA300;
             }
             .image-section {
-                margin-top: 3px;
-                height: 75vw;
+                margin-top: 5vw;
+                height: 93vw;
                 position: relative;
                 #cauli {
-                    top: 11vw;
-                    left: 12vw;
+                    top: 20vw;
+                    left: 5vw;
                     position: absolute;
                     transform: rotate(
                         -25deg) !important;
                     img {
-                        width: 20vw;
+                        width: 25vw;
                     }
                 }
                 #dog {
-                    background-color: white;
                     position: absolute;
-                    border: 5px solid white;
-                    top: 3.5vw;
-                    left: calc(50% - 15vw);
+                    border: 1vw solid white;
+                    top: 5.5vw;
+                    left: calc(50% - 17.5vw);
                     box-shadow: var(0.00px 1.00px 4px 0px rgba(0,0,0,0.4));
+                    img {
+                        width: 35vw;
+                    }
+                }
+                #dragon {
+                    top: 23vw;
+                    left: calc(50% + 20vw);
+                    position: absolute;
+                    transform: rotate(20deg) !important;
                     img {
                         width: 25vw;
                     }
                 }
-                #dog:hover {
-                    filter: opacity(50%);
-                }
-                #dragon {
-                    top: 14vw;
-                    left: calc(50% + 18vw);
-                    position: absolute;
-                    transform: rotate(20deg) !important;
-                    img {
-                        width: 20vw;
-                    }
-                }
                 #sprouts {
-                    top: 33vw;
+                    top: 50vw;
                     left: calc(50% - 12vw);
                     position: absolute;
                     transform: rotate(-15deg) !important;
                     img {
-                        width: 20vw;
+                        width: 30vw;
                     }
                 }
             }

@@ -19,24 +19,24 @@ const Home1 = () => {
                         </h3>
                     </Fade>
                     <div className="image-section">
-                        <Fade left duration={3000}>
-                            <div id="cauli">
-                                <img src={require('../assets/img/cauli.webp').default} />
-                            </div>
-                        </Fade>
+                        <div id="cauli">
+                            <Fade left duration={3000}>
+                                    <img src={require('../assets/img/cauli.webp').default} />
+                            </Fade>
+                        </div>
                         <div id="dog">
                             <img src={require('../assets/img/dog.jpg').default} />
                         </div>
-                        <Fade right duration={3000}>
-                            <div id="dragon">
+                        <div id="dragon">
+                            <Fade right duration={3000}>
                                 <img src={require('../assets/img/Dragon.webp').default} />
-                            </div>
-                        </Fade>
-                        <Fade bottom duration={3000}>
-                            <div id="sprouts">
-                                <img src={require('../assets/img/sprouts.webp').default} />
-                            </div>
-                        </Fade>
+                            </Fade>
+                        </div>
+                        <div id="sprouts">
+                            <Fade bottom duration={3000}>
+                                    <img src={require('../assets/img/sprouts.webp').default} />
+                            </Fade>
+                        </div>
                     </div>
                 </div>
                 <div className="cliam">

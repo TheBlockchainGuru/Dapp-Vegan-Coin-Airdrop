@@ -369,7 +369,7 @@ class Home extends React.Component {
                             Close
                         </Button>
                         <Button variant="primary" onClick={()=>this.handleConfirm()}>
-                            Save Changes
+                            Claim
                         </Button>
                         </Modal.Footer>
                     </Modal>

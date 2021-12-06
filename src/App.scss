@@ -3,5 +3,29 @@ body {
     margin: 0;
 }
 
+.modal {
+    .modal-dialog {
+        .modal-content {
+            background-color: #FFA300 !important;
+            font-weight: 800;
+            .modal-header  {
+                .modal-title {
+                    font-weight: 800;
+                }
+            }
+            .modal-footer {
+                .btn-primary {
+                    background-color: #07c164;
+                    border: 1px solid #07c164;
+                }
+                .btn-secondary {
+                    background-color: black;
+                    border: 1px solid black;
+                }
+            }
+        }
+    }
+}
+
 @import "./assets/scss/header.scss";
 @import "./assets/scss/home.scss";

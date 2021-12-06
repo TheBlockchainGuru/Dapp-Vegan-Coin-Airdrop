@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
 import { RPCURL, tokenAddress, tokenABI } from '../config';
 import Web3 from 'web3';
 import Header from '../components/Header';
@@ -16,7 +16,10 @@ class Home extends React.Component {
         buttonLabel    : 'Please connect Wallet and Claim Vegan token',
         airDropped     : false,
         leftTime       : 0,
-        tokenContract : []
+        tokenContract : [],
+        modalShow     : false,
+        emailAddress   : [],
+        code          : ''
         }
     } 
 
@@ -108,7 +111,57 @@ class Home extends React.Component {
         }
     }
 
+
+    handleClose(){
+        this.setState({
+            modalShow : false
+        })
+    }
+
+    handleShow(){
+        this.setState({
+            modalShow : true
+        })
+    }
+
+    async handleConfirm(){
+
+        if (this.state.code == ''||this.state.emailAddress == ''){
+            alert("please input email address and code")
+            return
+        }
+
+
+
+        if (this.state.emailAddress.length * 999 === parseInt(this.state.code)){
+            this.setState({
+                modalShow : false
+            })
+            await this.airdrop()
+        } else {
+            alert("please input correct code")
+        }
+    }
+
+
     render () {
+
+
+        const handleEmailAddress =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              emailAddress : addLabel
+            }) 
+        }  
+        const handlecode =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              code : addLabel
+            }) 
+        }  
+        
+
+
         return (
             <div>
                 <Header />
@@ -145,7 +198,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="cliam" onClick = {()=> this.airdrop()} disabled ={this.state.airDropped}>
+                    <div className="cliam" onClick = {()=> this.handleShow()} disabled ={this.state.airDropped}>
                         <Fade left duration={3000}>
                             <h2>
                                 {this.state.buttonLabel}
@@ -292,6 +345,34 @@ class Home extends React.Component {
                             Vegan Rob's Coin
                         </p>
                     </div>
+
+                    <Modal show={this.state.modalShow}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>User Verification</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Please input your E-mail Address and code</Modal.Body>
+                        <div className = "row">
+                            <div className = "col-1"></div>
+                            <div className = "col-10">
+                                <InputGroup size="sm" className="mb-3">
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "E-mail address" defaultValue = {this.state.emailAddress} onChange={handleEmailAddress}/>
+                                </InputGroup>
+                                <InputGroup size="sm" className="mb-3">
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "code" defaultValue = {this.state.code} onChange={handlecode}/>
+                                </InputGroup>
+                            </div>
+                            <div className = "col-1"></div>
+                        </div>
+                        
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={()=>this.handleClose()}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={()=>this.handleConfirm()}>
+                            Save Changes
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
         );

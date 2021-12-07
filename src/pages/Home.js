@@ -1,4 +1,4 @@
-import { Container, Row, Col, Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
+import { Container, Row, Col, Modal, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import { RPCURL, tokenAddress, tokenABI } from '../config';
 import Web3 from 'web3';
 import Header from '../components/Header';
@@ -198,6 +198,26 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className="box">
+                        <Container>
+                            <Row>
+                                <Col lg="1" md="1"></Col>
+                                <Col lg="10" md="10" sm="12" xs="12">
+                                    <h1>Get Rob's Box for 10 million Vegan Rob's Coins</h1>
+                                </Col>
+                                <Col lg="1" md="1"></Col>
+                                <Col lg="4" md="4" sm="12" xs="12">
+                                    <img src={require('../assets/img/box.webp').default} />
+                                </Col>
+                                <Col lg="6" md="6" sm="12" xs="12">
+                                    <p>Rob's Box is a collection of exclusive snacks, swag and wisdom sent from Vegan Rob's straight to your door!</p>
+                                </Col>
+                                <Col lg="12" md="12" sm="12" xs="12" className="get-box">
+                                    <Button>Get Rob's Box!</Button>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
                     <div className="cliam" onClick = {()=> this.handleShow()} disabled ={this.state.airDropped}>
                         <Fade left duration={3000}>
                             <h2>
@@ -223,13 +243,39 @@ class Home extends React.Component {
                                     <h5>Buy Vegan Rob's Snacks!</h5>
                                     <p>Order our snacks online and coins will be sent directly to your wallet</p>
                                     <img src={require('../assets/img/online.webp').default} />
+                                    <h4>
+                                        Just Bought Snacks? Claim your coins!
+                                    </h4>
+                                    <Row>
+                                        <Form.Label column="sm" lg={5}>
+                                            Email
+                                        </Form.Label>
+                                        <Col>
+                                        <Form.Control size="sm" type="text" />
+                                        </Col>
+                                    </Row>
+                                    <Row className="padding-top-20">
+                                        <Form.Label column="sm" lg={5}>
+                                            Confirmation code
+                                        </Form.Label>
+                                        <Col>
+                                        <Form.Control size="sm" type="text" />
+                                        </Col>
+                                    </Row>
+                                    <Row className="padding-top-20">
+                                        <Form.Label column="sm" lg={5}>
+                                        </Form.Label>
+                                        <Col>
+                                            <Button>Claim</Button>
+                                        </Col>
+                                    </Row>
                                 </Col>
-                                <Col lg="4" md="4" sm="12">
+                                <Col lg="4" md="4" sm="12" className="next-col">
                                     <h5>Invite friends to our Instagram</h5>
                                     <p>Invite 5 friends to follow us and we will send you coins!</p>
                                     <img src={require('../assets/img/online1.webp').default} />
                                 </Col>
-                                <Col lg="4" md="4" sm="12">
+                                <Col lg="4" md="4" sm="12" className="next-col">
                                     <h5>Buy Vegan Rob's Coin on Pancake Swap!</h5>
                                     <p>Just search "Vegan Rob's Coin" or copy our contract address</p>
                                     <p>0x5AffD40019BEf91c23349Bf4780904c000c2E21A</p>

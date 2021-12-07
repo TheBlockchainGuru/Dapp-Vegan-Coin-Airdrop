@@ -51,6 +51,35 @@
             }
         }
     }
+    .box {
+        h1 {
+            padding-top: 77px;
+            padding-bottom: 20px;
+            font-size: 55px;
+            font-weight: 800;
+            color: #ffa300;
+            letter-spacing: 0.01em;
+        }
+        .row {
+            img {
+                width: 100%;
+            }
+            p {
+                font-size: 37px;
+                font-weight: 500;
+            }
+            .get-box {
+                padding: 20px;
+                padding-bottom: 40px;
+                button {
+                    background-color: black;
+                    color: white;
+                    font-size: 40px;
+                    padding: 15px;
+                }
+            }
+        }
+    }
     .cliam {
         background-color: #ff7700;
         padding: 39px;
@@ -90,6 +119,16 @@
             font-size: 45px;
             font-weight: 800;
         }
+        h4 {
+            padding-top: 15px;
+        }
+        label {
+            font-weight: 700;
+            font-size: 16px;
+        }
+        button {
+            background-color: black;
+        }
         .container {
             margin-top: 40px;
             h5 {
@@ -103,13 +142,16 @@
                 width: 100%;
             }
         }
+        .padding-top-20 {
+            padding-top: 20px;
+        }
     }
     .from {
         background-color: #ffd500;
         padding: 40px;
         h2 {
             font-size: 35px;
-            font-weight: 700;
+            font-weight: 750;
         }
     }
     .section {
@@ -269,6 +311,33 @@
                 }
             }
         }
+            
+        .box {
+            h1 {
+                padding-top: 7.7vw;
+                padding-bottom: 2vw;
+                font-size: 5.5vw;
+                font-weight: 800;
+                color: #ffa300;
+                letter-spacing: 0.16vw;
+            }
+            .row {
+                p {
+                    font-size: 3.7vw;
+                    font-weight: 500;
+                }
+                .get-box {
+                    padding: 2vw;
+                    padding-bottom: 4vw;
+                    button {
+                        background-color: black;
+                        color: white;
+                        font-size: 4vw;
+                        padding: 1.5vw;
+                    }
+                }
+            }
+        }
         .cliam {
             background-color: #ff7700;
             padding: 4vw;   
@@ -303,10 +372,23 @@
                 font-size: 4.5vw;
                 font-weight: 800;
             }
+            h4 {
+                padding-top: 1.5vw;
+            }
+            label {
+                font-weight: 700;
+                font-size: 1.6vw;
+            }
+            button {
+                font-size: 2vw;
+            }
             .container {
                 margin-top: 4vw;
                 h5 {
                     font-size: 2.5vw;
+                }
+                h4 {
+                    font-size: 1.5vw;
                 }
                 p {
                     word-break: break-all;
@@ -317,13 +399,16 @@
                     width: 100%;
                 }
             }
+            .padding-top-20 {
+                padding-top: 2vw;
+            }
         }
         .from {
             background-color: #ffd500;
             padding: 4vw;
             h2 {
                 font-size: 3.5vw;
-                font-weight: 700;
+                font-weight: 750;
             }
         }
         .section {
@@ -464,6 +549,33 @@
                 }
             }
         }
+        .box {
+            h1 {
+                padding-top: 7.7vw;
+                padding-bottom: 2vw;
+                font-size: 7vw;
+                font-weight: 800;
+                color: #ffa300;
+                letter-spacing: 0.16vw;
+            }
+            .row {
+                p {
+                    padding-top: 2vw;
+                    font-size: 3.7vw;
+                    font-weight: 500;
+                }
+                .get-box {
+                    padding: 2vw;
+                    padding-bottom: 4vw;
+                    button {
+                        background-color: black;
+                        color: white;
+                        font-size: 4vw;
+                        padding: 1.5vw;
+                    }
+                }
+            }
+        }
         .cliam {
             background-color: #ff7700;
             padding: 4vw;   
@@ -494,9 +606,22 @@
                 font-size: 5vw;
                 font-weight: 800;
             }
+            h4 {
+                padding-top: 1.5vw;
+            }
+            label {
+                font-weight: 700;
+                font-size: 3vw;
+            }
+            button {
+                font-size: 3vw;
+            }
             .container {
                 margin-top: 4vw;
                 h5 {
+                    font-size: 3vw;
+                }
+                h4 {
                     font-size: 3vw;
                 }
                 p {
@@ -507,6 +632,12 @@
                     max-width: 50vw;
                     width: 100%;
                 }
+                .next-col {
+                    padding-top: 3vw;
+                }
+            }
+            .padding-top-20 {
+                padding-top: 1vw;
             }
         }
         .from {

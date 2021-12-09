@@ -159,7 +159,7 @@ class Home extends React.Component {
         }
 
     }
-    
+
     render () {
         const handleEmailAddress =  (e) => {
             let addLabel  = e.target.value
@@ -238,7 +238,7 @@ class Home extends React.Component {
                                 {/* Claim 1 million FREE Vegan Rob's Coins */}
                             </h2>
                             <p>{this.state.airdropAddress}</p>
-                            <p>AirDrop Left : {this.state.leftTime} </p>
+                            
                         </Fade>
                     </div>
 
@@ -248,6 +248,7 @@ class Home extends React.Component {
                             <h3>1 million Free Coins </h3>
                             <h3>Early Adopters get 1 million coins for free!</h3>
                             <h4>It's not too late for you! Click the button above to claim your coins!</h4>
+                            <p>AirDrop Left : {this.state.leftTime} </p>
                         </Fade>
                     </div>
 

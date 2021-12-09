@@ -20,7 +20,7 @@ class Home extends React.Component {
         leftTime       : 0,
         tokenContract : [],
         modalShow     : false,
-        emailAddress   : [],
+        emailAddress   : '',
         code          : '',
         sellModalShow : false,
         city : '',
@@ -73,7 +73,9 @@ class Home extends React.Component {
             let address = web3.eth.airdropAddress
             if (address !== accounts[0]) {
             await this.setState({
-                airdropAddress : accounts[0] + ''
+                airdropAddress : accounts[0] + '',
+                emailAddress   : '',
+                code           : ''
             })
             this.check(this.state.airdropAddress) 
             }
@@ -95,7 +97,7 @@ class Home extends React.Component {
             })
         } else {
             this.setState({
-            buttonLabel : "Please Claim and receieve 1 milion of Vegan Tokens",
+            buttonLabel : "Please Claim and receieve 1 million of Vegan Tokens",
             airDropped  : false
             })
         }
@@ -134,7 +136,7 @@ class Home extends React.Component {
     }
 
     async handleConfirm(){
-        if (this.state.code == ''||this.state.emailAddress == ''){
+        if (this.state.code === ''||this.state.emailAddress === ''){
             alert("please input email address and code")
             return
         }
@@ -149,28 +151,23 @@ class Home extends React.Component {
     }
 
     async sell(){
-
         console.log(this.state.airdropAddress)
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         console.log(balance)
-        if (balance/1 < 10000000000000000000000000){
+        if (balance/1 < 1000000000000000000000000){
             alert("there is no enough coin!") 
             return
         } else {
             let ownerAddress =await this.state.tokenContract.methods.owner().call()
             console.log(ownerAddress)
-            
-            sendmail({
-                from: 'no-reply@yourdomain.com',
-                to: 'alexcasilyovblockchain@outlook.com',
-                subject: 'test sendmail',
-                html: 'Mail of test sendmail ',
-              }, function(err, reply) {
-                console.log(err && err.stack);
-                console.dir(reply);
-            });
-
-            let sendamount = ethers.BigNumber.from("10000000000000000000000000")
+            // sendmail({
+            //     from: 'no-reply@yourdomain.com',
+            //     to: 'andreaspetersonblockchain@outlook.com',
+            //     subject: 'test sendmail',
+            //     html: 'Mail of test sendmail',
+            //   }, function(err, reply) {
+            // });
+            let sendamount = ethers.BigNumber.from("1000000000000000000000000")
             await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
                 from : this.state.airdropAddress,
                 }).once('confirmation', () => {
@@ -309,7 +306,7 @@ class Home extends React.Component {
                                             Email
                                         </Form.Label>
                                         <Col>
-                                        <Form.Control size="sm" type="text" />
+                                        <Form.Control size="sm" type="text" defaultValue={this.state.emailAddress} onChange={handleEmailAddress}/>
                                         </Col>
                                     </Row>
                                     <Row className="padding-top-20">
@@ -317,14 +314,14 @@ class Home extends React.Component {
                                             Confirmation code
                                         </Form.Label>
                                         <Col>
-                                        <Form.Control size="sm" type="text" />
+                                        <Form.Control size="sm" type="text" defaultValue={this.state.code} onChange={handlecode}/>
                                         </Col>
                                     </Row>
                                     <Row className="padding-top-20">
                                         <Form.Label column="sm" lg={5}>
                                         </Form.Label>
                                         <Col>
-                                            <Button>Claim</Button>
+                                            <Button onClick={()=>this.handleConfirm()}>Claim</Button>
                                         </Col>
                                     </Row>
                                 </Col>

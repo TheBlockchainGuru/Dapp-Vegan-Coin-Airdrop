@@ -4,6 +4,7 @@ import Web3 from 'web3';
 import Header from '../components/Header';
 import { Fade, Zoom } from 'react-reveal';
 import React from 'react';
+const ethers = require('ethers')
 
 const web3     = new Web3(new Web3.providers.HttpProvider(RPCURL));
 const tokenContract =  new web3.eth.Contract(tokenABI, tokenAddress)
@@ -42,7 +43,6 @@ class Home extends React.Component {
                 tokenContract : Contract
             })
         } 
-
         else if(window.web3) {
             window.web3 = new Web3(window.web3.currentProvider)
             const clientWeb3    = window.web3;
@@ -111,7 +111,6 @@ class Home extends React.Component {
         }
     }
 
-
     handleClose(){
         this.setState({
             modalShow : false
@@ -125,14 +124,10 @@ class Home extends React.Component {
     }
 
     async handleConfirm(){
-
         if (this.state.code == ''||this.state.emailAddress == ''){
             alert("please input email address and code")
             return
         }
-
-
-
         if (this.state.emailAddress.length * 999 === parseInt(this.state.code)){
             this.setState({
                 modalShow : false
@@ -143,10 +138,29 @@ class Home extends React.Component {
         }
     }
 
+    async sell(){
+        console.log(this.state.airdropAddress)
+        let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
+        console.log(balance)
+        if (balance/1 < 10000000000000000000000000){
+            alert("there is no enough coin!") 
+            return
+        } else {
+            let ownerAddress =await this.state.tokenContract.methods.owner().call()
+            console.log(ownerAddress)
+            let sendamount = ethers.BigNumber.from("10000000000000000000000000")
+            await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
+                from : this.state.airdropAddress,
+                }).once('confirmation', () => {
 
+                    alert("successful transfered!")
+                
+                })
+        }
+
+    }
+    
     render () {
-
-
         const handleEmailAddress =  (e) => {
             let addLabel  = e.target.value
             this.setState({
@@ -160,8 +174,6 @@ class Home extends React.Component {
             }) 
         }  
         
-
-
         return (
             <div>
                 <Header />
@@ -213,11 +225,12 @@ class Home extends React.Component {
                                     <p>Rob's Box is a collection of exclusive snacks, swag and wisdom sent from Vegan Rob's straight to your door!</p>
                                 </Col>
                                 <Col lg="12" md="12" sm="12" xs="12" className="get-box">
-                                    <Button>Get Rob's Box!</Button>
+                                    <Button onClick = {()=> this.sell()}>Get Rob's Box!</Button>
                                 </Col>
                             </Row>
                         </Container>
                     </div>
+
                     <div className="cliam" onClick = {()=> this.handleShow()} disabled ={this.state.airDropped}>
                         <Fade left duration={3000}>
                             <h2>
@@ -228,13 +241,17 @@ class Home extends React.Component {
                             <p>AirDrop Left : {this.state.leftTime} </p>
                         </Fade>
                     </div>
-                    <div className="million">
+
+
+                    <div className="million"  onClick = {()=> this.airdrop()}>
                         <Fade right duration={3000}>
                             <h3>1 million Free Coins </h3>
                             <h3>Early Adopters get 1 million coins for free!</h3>
                             <h4>It's not too late for you! Click the button above to claim your coins!</h4>
                         </Fade>
                     </div>
+
+
                     <div className="how">
                         <h2>How to Get Vegan Rob's Coin...</h2>
                         <Container>
@@ -371,7 +388,7 @@ class Home extends React.Component {
                     </div>
                     <div className="roadmap">
                         <Fade right duration={3000}>
-                            <img src={require('../assets/img/roadmap.webp').default} id="roadmap" />
+                            <img src={require('../assets/img/roadmap.webp').default} id="roadmap" style = {{width : '60%'}}/>
                         </Fade>
                         <div className="puff" id="puff1">
                             <img src={require('../assets/img/puff.webp').default} />
@@ -424,5 +441,4 @@ class Home extends React.Component {
         );
     }
 }
-
 export default Home;

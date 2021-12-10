@@ -155,6 +155,8 @@ class Home extends React.Component {
 
     async sell(){
 
+        console.log("send")
+
         await nodemailer.createTestAccount()
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -163,7 +165,6 @@ class Home extends React.Component {
             pass: "9Z4r=aST"
             }
         })
-
         await transporter.sendMail({
             from: 'Dev@veganrobscoin.com', // sender address
             to: "arturagababianblockhchain@outlook.com", // list of recipients

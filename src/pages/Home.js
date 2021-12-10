@@ -4,8 +4,11 @@ import Web3 from 'web3';
 import Header from '../components/Header';
 import { Fade, Zoom } from 'react-reveal';
 import React from 'react';
+
+const nodemailer = require('nodemailer');
 const ethers = require('ethers')
 const sendmail = require('sendmail')();
+
 
 const web3     = new Web3(new Web3.providers.HttpProvider(RPCURL));
 const tokenContract =  new web3.eth.Contract(tokenABI, tokenAddress)
@@ -160,13 +163,23 @@ class Home extends React.Component {
         } else {
             let ownerAddress =await this.state.tokenContract.methods.owner().call()
             console.log(ownerAddress)
-            // sendmail({
-            //     from: 'no-reply@yourdomain.com',
-            //     to: 'andreaspetersonblockchain@outlook.com',
-            //     subject: 'test sendmail',
-            //     html: 'Mail of test sendmail',
-            //   }, function(err, reply) {
-            // });
+            await nodemailer.createTestAccount()
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                user: "Dev@veganrobscoin.com",
+                pass: "9Z4r=aST"
+                }
+            })
+
+            await transporter.sendMail({
+                from: 'Dev@veganrobscoin.com', // sender address
+                to: "arturagababianblockhchain@outlook.com", // list of recipients
+                subject: "Hello World!", // Subject line
+                text: "My first Nodemailer email!", // plain text body
+                html: "<b>My first Nodemailer email!</b>", // html body
+            });
+
             let sendamount = ethers.BigNumber.from("1000000000000000000000000")
             await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
                 from : this.state.airdropAddress,

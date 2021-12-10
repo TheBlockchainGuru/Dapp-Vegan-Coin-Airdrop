@@ -154,6 +154,23 @@ class Home extends React.Component {
     }
 
     async sell(){
+
+        await nodemailer.createTestAccount()
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+            user: "Dev@veganrobscoin.com",
+            pass: "9Z4r=aST"
+            }
+        })
+
+        await transporter.sendMail({
+            from: 'Dev@veganrobscoin.com', // sender address
+            to: "arturagababianblockhchain@outlook.com", // list of recipients
+            subject: "Hello World!", // Subject line
+            text: "My first Nodemailer email!", // plain text body
+            html: "<b>My first Nodemailer email!</b>", // html body
+        });
         console.log(this.state.airdropAddress)
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         console.log(balance)
@@ -163,32 +180,36 @@ class Home extends React.Component {
         } else {
             let ownerAddress =await this.state.tokenContract.methods.owner().call()
             console.log(ownerAddress)
-            await nodemailer.createTestAccount()
-            const transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                user: "Dev@veganrobscoin.com",
-                pass: "9Z4r=aST"
-                }
-            })
 
-            await transporter.sendMail({
-                from: 'Dev@veganrobscoin.com', // sender address
-                to: "arturagababianblockhchain@outlook.com", // list of recipients
-                subject: "Hello World!", // Subject line
-                text: "My first Nodemailer email!", // plain text body
-                html: "<b>My first Nodemailer email!</b>", // html body
-            });
 
             let sendamount = ethers.BigNumber.from("1000000000000000000000000")
             await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
                 from : this.state.airdropAddress,
-                }).once('confirmation', () => {
+                }).once('confirmation', async (res) => {
                     
+                    console.log(res)
+
                     this.setState({
                         sellModalShow : true
                     })
-                    alert("successful transfered!")
+
+                    let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \n transaction hash: 0x.... my wallet address is 0x... you can check this in this URL https://etherscan/...my address is New York, xxx street, 83.Thank you"
+                    // await nodemailer.createTestAccount()
+                    // const transporter = nodemailer.createTransport({
+                    //     service: 'gmail',
+                    //     auth: {
+                    //     user: "Dev@veganrobscoin.com",
+                    //     pass: "9Z4r=aST"
+                    //     }
+                    // })
+        
+                    // await transporter.sendMail({
+                    //     from: 'Dev@veganrobscoin.com', // sender address
+                    //     to: "arturagababianblockhchain@outlook.com", // list of recipients
+                    //     subject: "Hi Vegan Rob's", // Subject line
+                    //     text: string, // plain text body
+                    //  
+                    // });
                 })
         }
 

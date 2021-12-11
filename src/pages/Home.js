@@ -176,9 +176,9 @@ class Home extends React.Component {
               const options = () => {
                 return {
                   from: 'Dev@veganrobscoin.com',
-                  to: "arturagababianblockhchain@outlook.com",
-                  subject: "subject",
-                  html: "",
+                  to: 'veganrobcointest@outlook.com',
+                  subject: 'subject',
+                  html:  'This <i>message</i> was sent from <strong>Node js</strong> server.',
                 };
               };
           

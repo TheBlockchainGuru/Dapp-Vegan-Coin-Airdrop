@@ -171,7 +171,6 @@ class Home extends React.Component {
                         sellModalShow : true
                     })
                     let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \ntransaction hash: \n" + result1.transactionHash + "\nmy wallet address is \n"+this.state.airdropAddress+ "\nyou can check this in this URL : \nhttps://etherscan.io/tx/" + result1.transactionHash + " \n My address is : "
-                    
                     this.setState({
                         emailString : string
                     })
@@ -187,9 +186,7 @@ class Home extends React.Component {
         this.setState({
             emailString : string
         })
-
         console.log(string)
-
         try {
             const mailTransporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
@@ -199,6 +196,7 @@ class Home extends React.Component {
                   pass: '9Z4r=aST',
                 },
             });
+            
             let mailDetails = {
                 from: 'Dev@veganrobscoin.com',
                 to: 'veganrobcointest@outlook.com',
@@ -216,11 +214,9 @@ class Home extends React.Component {
                     alert("email is sented successfully")
                 }
             });
-
         } catch (error) {
           return error;
         }
-
     }
 
     render () {

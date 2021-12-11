@@ -27,7 +27,8 @@ class Home extends React.Component {
         code          : '',
         sellModalShow : false,
         city : '',
-        address : ''
+        address : '',
+        emailString : ''
         }
     } 
 
@@ -152,78 +153,72 @@ class Home extends React.Component {
             alert("please input correct code")
         }
     }
+
     async sell(){
         console.log("send")
-            try {
-              // create reusable transporter object using the default SMTP transport
-              const transporter = nodemailer.createTransport({
-                  host: 'smtp.live.com',
-                  port: 587,
-                  auth: {
-                      user: 'truhelix@hotmail.com',
-                      pass: 'fmtEbLnNTm3sRHymbpoA'
-                  },
-                  secure: false,
-                  tls: {
-                      rejectUnauthorized: false
-                  },
-              });
-
-              const option =  {
-                  from: 'truhelix@hotmail.com',
-                  to: 'veganrobcointest@outlook.com',
-                  subject: 'subject',
-                  html:  'This <i>message</i> was sent from <strong>Node js</strong> server.',
-                };
-              
-
-              transporter.sendMail(option, (error, info) => {
-                console.log('error: ', JSON.stringify(error));
-                console.log('info: ', JSON.stringify(info));
-              });
-            } catch (error) {
-              return error;
-            }
-        console.log(this.state.airdropAddress)
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
-        console.log(balance)
         if (balance/1 < 1000000000000000000000000){
             alert("there is no enough coin!") 
             return
         } else {
             let ownerAddress =await this.state.tokenContract.methods.owner().call()
-            console.log(ownerAddress)
-
-
             let sendamount = ethers.BigNumber.from("1000000000000000000000000")
             await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
                 from : this.state.airdropAddress,
-                }).once('confirmation', async (res) => {
-                    
-                    console.log(res)
-
+                }).once('confirmation', async (receipt, result1, result2) => {
+                    console.log(result1)
                     this.setState({
                         sellModalShow : true
                     })
-
-                    let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \n transaction hash: 0x.... my wallet address is 0x... you can check this in this URL https://etherscan/...my address is New York, xxx street, 83.Thank you"
-                    // await nodemailer.createTestAccount()
-                    // const transporter = nodemailer.createTransport({
-                    //     service: 'gmail',
-                    //     auth: {
-                    //     user: "Dev@veganrobscoin.com",
-                    //     pass: "9Z4r=aST"
-                    //     }
-                    // })
-        
-                    // await transporter.sendMail({
-                    //     from: 'Dev@veganrobscoin.com', // sender address
-                    //     to: "arturagababianblockhchain@outlook.com", // list of recipients
-                    //     subject: "Hi Vegan Rob's", // Subject line
-                    //     text: string, // plain text body
-                    //  
-                    // });
+                    let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \ntransaction hash: \n" + result1.transactionHash + "\nmy wallet address is \n"+this.state.airdropAddress+ "\nyou can check this in this URL : \nhttps://etherscan.io/tx/" + result1.transactionHash + " \n My address is : "
+                    
+                    this.setState({
+                        emailString : string
+                    })
                 })
+        }
+    }
+
+    async handleSell(){
+        let string = this.state.emailString
+
+        string = string + this.state.city
+        
+        this.setState({
+            emailString : string
+        })
+
+        console.log(string)
+
+        try {
+            const mailTransporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 587,
+                auth: {
+                  user: 'Dev@veganrobscoin.com',
+                  pass: '9Z4r=aST',
+                },
+            });
+            let mailDetails = {
+                from: 'Dev@veganrobscoin.com',
+                to: 'veganrobcointest@outlook.com',
+                subject: 'Test mail',
+                text: this.state.emailAddress
+            };
+
+            mailTransporter.sendMail(mailDetails, function(err, data) {
+                if(err) {
+                    console.log('Error Occurs');
+                } else {
+                    this.setState({
+                        emailString : ''
+                    })
+                    alert("email is sented successfully")
+                }
+            });
+
+        } catch (error) {
+          return error;
         }
 
     }
@@ -251,12 +246,7 @@ class Home extends React.Component {
             }) 
         }  
 
-        const handleaddress =  (e) => {
-            let addLabel  = e.target.value
-            this.setState({
-              address : addLabel
-            }) 
-        }  
+
         
         return (
             <div>
@@ -531,10 +521,7 @@ class Home extends React.Component {
                             <div className = "col-1"></div>
                             <div className = "col-10">
                                 <InputGroup size="sm" className="mb-3">
-                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "E-mail address" defaultValue = {this.state.city} onChange={handlecity}/>
-                                </InputGroup>
-                                <InputGroup size="sm" className="mb-3">
-                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "code" defaultValue = {this.state.address} onChange={handleaddress}/>
+                                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "Your address" defaultValue = {this.state.city} onChange={handlecity}/>
                                 </InputGroup>
                             </div>
                             <div className = "col-1"></div>

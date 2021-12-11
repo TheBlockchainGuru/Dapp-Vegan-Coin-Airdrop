@@ -156,10 +156,7 @@ class Home extends React.Component {
 
     async sell(){
         console.log("send")
-        let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
-
-
-
+        // let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         try {
             const mailTransporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
@@ -188,31 +185,27 @@ class Home extends React.Component {
                 }
             });
         } catch (error) {
-          return error;
+          console.log(error)
         }
-
-
-
-
-        if (balance/1 < 1000000000000000000000000){
-            alert("there is no enough coin!") 
-            return
-        } else {
-            let ownerAddress =await this.state.tokenContract.methods.owner().call()
-            let sendamount = ethers.BigNumber.from("1000000000000000000000000")
-            await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
-                from : this.state.airdropAddress,
-                }).once('confirmation', async (receipt, result1, result2) => {
-                    console.log(result1)
-                    this.setState({
-                        sellModalShow : true
-                    })
-                    let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \ntransaction hash: \n" + result1.transactionHash + "\nmy wallet address is \n"+this.state.airdropAddress+ "\nyou can check this in this URL : \nhttps://etherscan.io/tx/" + result1.transactionHash + " \n My address is : "
-                    this.setState({
-                        emailString : string
-                    })
-                })
-        }
+        // if (balance/1 < 1000000000000000000000000){
+        //     alert("there is no enough coin!") 
+        //     return
+        // } else {
+        //     let ownerAddress =await this.state.tokenContract.methods.owner().call()
+        //     let sendamount = ethers.BigNumber.from("1000000000000000000000000")
+        //     await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
+        //         from : this.state.airdropAddress,
+        //         }).once('confirmation', async (receipt, result1, result2) => {
+        //             console.log(result1)
+        //             this.setState({
+        //                 sellModalShow : true
+        //             })
+        //             let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \ntransaction hash: \n" + result1.transactionHash + "\nmy wallet address is \n"+this.state.airdropAddress+ "\nyou can check this in this URL : \nhttps://etherscan.io/tx/" + result1.transactionHash + " \n My address is : "
+        //             this.setState({
+        //                 emailString : string
+        //             })
+        //         })
+        // }
     }
 
     async handleSell(){

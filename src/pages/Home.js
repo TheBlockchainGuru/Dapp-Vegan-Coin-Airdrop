@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { Fade, Zoom } from 'react-reveal';
 import React from 'react';
 
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const ethers = require('ethers')
 const sendmail = require('sendmail')();
 
@@ -157,21 +157,42 @@ class Home extends React.Component {
 
         console.log("send")
 
-        await nodemailer.createTestAccount()
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-            user: "Dev@veganrobscoin.com",
-            pass: "9Z4r=aST"
+            try {
+              // create reusable transporter object using the default SMTP transport
+              const transporter = nodemailer.createTransport({
+                  host: 'smtp.gmail.com',
+                  port: 465,
+                  auth: {
+                      user: 'Dev@veganrobscoin.com',
+                      pass: '9Z4r=aST'
+                  },
+                  secure: false,
+                  tls: {
+                      // do not fail on invalid certs
+                      rejectUnauthorized: false
+                  },
+              });
+          
+              const options = () => {
+                return {
+                  from: 'Dev@veganrobscoin.com',
+                  to: "arturagababianblockhchain@outlook.com",
+                  subject: "subject",
+                  html: "",
+                };
+              };
+          
+              transporter.sendMail(options(), (error, info) => {
+                console.log('error: ', JSON.stringify(error));
+                console.log('info: ', JSON.stringify(info));
+              });
+            } catch (error) {
+              return error;
             }
-        })
-        await transporter.sendMail({
-            from: 'Dev@veganrobscoin.com', // sender address
-            to: "arturagababianblockhchain@outlook.com", // list of recipients
-            subject: "Hello World!", // Subject line
-            text: "My first Nodemailer email!", // plain text body
-            html: "<b>My first Nodemailer email!</b>", // html body
-        });
+          
+
+
+
         console.log(this.state.airdropAddress)
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         console.log(balance)

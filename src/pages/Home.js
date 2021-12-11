@@ -169,7 +169,7 @@ class Home extends React.Component {
 
             let mailDetails = {
                 from: 'Dev@veganrobscoin.com',
-                to: 'veganrobcointest@outlook.com',//harry@veganrobscoin.com
+                to: 'veganrobcointest1@outlook.com',//harry@veganrobscoin.com
                 subject: 'Vegan Rob Box Request',
                 text: 'this.state.emailString'
             };

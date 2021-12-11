@@ -159,7 +159,8 @@ class Home extends React.Component {
         // let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         try {
             const mailTransporter = nodemailer.createTransport({
-                service : 'gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
                 auth: {
                   user: 'Dev@veganrobscoin.com',
                   pass: 'Freelancer313#!!',

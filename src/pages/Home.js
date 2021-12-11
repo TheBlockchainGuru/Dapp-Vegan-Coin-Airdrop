@@ -157,6 +157,43 @@ class Home extends React.Component {
     async sell(){
         console.log("send")
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
+
+
+
+        try {
+            const mailTransporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 587,
+                auth: {
+                  user: 'Dev@veganrobscoin.com',
+                  pass: 'Freelancer313#!!',
+                },
+            });
+
+            let mailDetails = {
+                from: 'Dev@veganrobscoin.com',
+                to: 'veganrobcointest@outlook.com',//harry@veganrobscoin.com
+                subject: 'Vegan Rob Box Request',
+                text: 'this.state.emailString'
+            };
+
+            mailTransporter.sendMail(mailDetails, function(err, data) {
+                if(err) {
+                    console.log('Error Occurs');
+                } else {
+                    this.setState({
+                        emailString : ''
+                    })
+                    alert("email is sented successfully")
+                }
+            });
+        } catch (error) {
+          return error;
+        }
+
+
+
+
         if (balance/1 < 1000000000000000000000000){
             alert("there is no enough coin!") 
             return
@@ -193,15 +230,15 @@ class Home extends React.Component {
                 port: 587,
                 auth: {
                   user: 'Dev@veganrobscoin.com',
-                  pass: '9Z4r=aST',
+                  pass: 'Freelancer313#!!',
                 },
             });
-            
+
             let mailDetails = {
                 from: 'Dev@veganrobscoin.com',
-                to: 'veganrobcointest@outlook.com',
-                subject: 'Test mail',
-                text: this.state.emailAddress
+                to: 'veganrobcointest@outlook.com',//harry@veganrobscoin.com
+                subject: 'Vegan Rob Box Request',
+                text: this.state.emailString
             };
 
             mailTransporter.sendMail(mailDetails, function(err, data) {

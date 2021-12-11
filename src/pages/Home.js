@@ -152,47 +152,38 @@ class Home extends React.Component {
             alert("please input correct code")
         }
     }
-
     async sell(){
-
         console.log("send")
-
             try {
               // create reusable transporter object using the default SMTP transport
               const transporter = nodemailer.createTransport({
-                  host: 'smtp.gmail.com',
-                  port: 465,
+                  host: 'smtp.live.com',
+                  port: 587,
                   auth: {
-                      user: 'Dev@veganrobscoin.com',
-                      pass: '9Z4r=aST'
+                      user: 'truhelix@hotmail.com',
+                      pass: 'fmtEbLnNTm3sRHymbpoA'
                   },
                   secure: false,
                   tls: {
-                      // do not fail on invalid certs
                       rejectUnauthorized: false
                   },
               });
-          
-              const options = () => {
-                return {
-                  from: 'Dev@veganrobscoin.com',
+
+              const option =  {
+                  from: 'truhelix@hotmail.com',
                   to: 'veganrobcointest@outlook.com',
                   subject: 'subject',
                   html:  'This <i>message</i> was sent from <strong>Node js</strong> server.',
                 };
-              };
-          
-              transporter.sendMail(options(), (error, info) => {
+              
+
+              transporter.sendMail(option, (error, info) => {
                 console.log('error: ', JSON.stringify(error));
                 console.log('info: ', JSON.stringify(info));
               });
             } catch (error) {
               return error;
             }
-          
-
-
-
         console.log(this.state.airdropAddress)
         let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
         console.log(balance)

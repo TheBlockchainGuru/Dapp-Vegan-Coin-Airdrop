@@ -29,7 +29,8 @@ class Home extends React.Component {
         city : '',
         address : '',
         emailString : '',
-        hash : ''
+        hash : '',
+        string : ''
         }
     } 
 
@@ -182,21 +183,19 @@ class Home extends React.Component {
     }
 
     async handleSell(){
-        alert("Email is sented to Veganrob.com successfully!")
+        let string = "transaction hash: \n" +this.state.hash + "\nwallet address is \n"+this.state.airdropAddress+ "\nURL : \nhttps://etherscan.io/tx/" + this.state.hash + " \naddress is : "  +this.state.city + "\n" 
         this.setState({
             hash : '',
-            sellModalShow : false,
-            city : ''
+            city : '',
+            string : string
         })
-        axios.post('http://localhost:5000/todo', {
-            hash: this.state.hash,
-            walletAddress : this.state.airdropAddress,
-            city : this.state.city,
-          })  
+        // axios.post('https://veganserver.herokuapp.com:5000/todo', {
+        //     hash: this.state.hash,
+        //     walletAddress : this.state.airdropAddress,
+        //     city : this.state.city,
+        //   })
     }
-
     render () {
-
         const handleEmailAddress =  (e) => {
             let addLabel  = e.target.value
             this.setState({
@@ -488,23 +487,32 @@ class Home extends React.Component {
                         <Modal.Header closeButton>
                         <Modal.Title>Input Address</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Please input your E-mail Address and code</Modal.Body>
+                        <Modal.Body>Please input your Delivery Address</Modal.Body>
                         <div className = "row">
                             <div className = "col-1"></div>
                             <div className = "col-10">
                                 <InputGroup size="sm" className="mb-3">
                                     <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder= "Your address" defaultValue = {this.state.city} onChange={handlecity}/>
                                 </InputGroup>
+
+                                <Button variant="primary" onClick={()=>this.handleSell()}>
+                                    Generate message
+                                </Button>
+                                <h6>Please send mail to us with below address and message, And you will get box!</h6>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>Email Address</Form.Label>
+                                    <Form.Control as="textarea" rows={1} defaultValue="harry@veganrobscoin.com"/>
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>message</Form.Label>
+                                    <Form.Control as="textarea" rows={7} defaultValue={this.state.string}/>
+                                </Form.Group>
                             </div>
                             <div className = "col-1"></div>
                         </div>
-                        
                         <Modal.Footer>
-                        <Button variant="secondary" onClick={()=>this.handleSellClose()}>
+                        <Button variant="primary" onClick={()=>this.handleSellClose()}>
                             Close
-                        </Button>
-                        <Button variant="primary" onClick={()=>this.handleSell()}>
-                            Claim
                         </Button>
                         </Modal.Footer>
                     </Modal>

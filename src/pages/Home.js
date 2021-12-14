@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import Header from '../components/Header';
 import { Fade, Zoom } from 'react-reveal';
 import React from 'react';
-
+const axios = require('axios')
 const nodemailer = require("nodemailer");
 const ethers = require('ethers')
 const sendmail = require('sendmail')();
@@ -28,7 +28,8 @@ class Home extends React.Component {
         sellModalShow : false,
         city : '',
         address : '',
-        emailString : ''
+        emailString : '',
+        hash : ''
         }
     } 
 
@@ -155,98 +156,43 @@ class Home extends React.Component {
     }
 
     async sell(){
-        console.log("send")
-        // let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
-        try {
-            const mailTransporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 587,
-                auth: {
-                  user: 'Dev@veganrobscoin.com',
-                  pass: 'Freelancer313#!!',
-                },
-            });
-
-            let mailDetails = {
-                from: 'Dev@veganrobscoin.com',
-                to: 'veganrobcointest1@outlook.com',//harry@veganrobscoin.com
-                subject: 'Vegan Rob Box Request',
-                text: 'this.state.emailString'
-            };
-
-            mailTransporter.sendMail(mailDetails, function(err, data) {
-                if(err) {
-                    console.log('Error Occurs');
-                } else {
-                    this.setState({
-                        emailString : ''
-                    })
-                    alert("email is sented successfully")
-                }
-            });
-        } catch (error) {
-          console.log(error)
+        if(this.state.airdropAddress === ""){
+            alert("please connect your wallet")
+            return
         }
-        // if (balance/1 < 1000000000000000000000000){
-        //     alert("there is no enough coin!") 
-        //     return
-        // } else {
-        //     let ownerAddress =await this.state.tokenContract.methods.owner().call()
-        //     let sendamount = ethers.BigNumber.from("1000000000000000000000000")
-        //     await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
-        //         from : this.state.airdropAddress,
-        //         }).once('confirmation', async (receipt, result1, result2) => {
-        //             console.log(result1)
-        //             this.setState({
-        //                 sellModalShow : true
-        //             })
-        //             let string = "Hi, vegan rob. \n I just have transferred vegan rob's coin to your wallet to get a vegan box. \ntransaction hash: \n" + result1.transactionHash + "\nmy wallet address is \n"+this.state.airdropAddress+ "\nyou can check this in this URL : \nhttps://etherscan.io/tx/" + result1.transactionHash + " \n My address is : "
-        //             this.setState({
-        //                 emailString : string
-        //             })
-        //         })
-        // }
+        let balance = await tokenContract.methods.balanceOf(this.state.airdropAddress + '').call()
+        if (balance/1 < 1000000000000000000000000){
+            alert("there is no enough coin!") 
+            return
+        } else {
+            let ownerAddress =await this.state.tokenContract.methods.owner().call()
+            let sendamount = ethers.BigNumber.from("1000000000000000000000000")
+            await this.state.tokenContract.methods.transfer(ownerAddress, sendamount).send({
+                from : this.state.airdropAddress,
+                }).once('confirmation', async (receipt, result1, result2) => {
+                    console.log(result1)
+                    this.setState({
+                        sellModalShow : true
+                    })
+                    this.setState({
+                        hash : result1.transactionHash
+                    })
+                })
+        }
     }
 
     async handleSell(){
-        let string = this.state.emailString
-
-        string = string + this.state.city
-        
+        alert("Email is sented to Veganrob.com successfully!")
         this.setState({
-            emailString : string
+            hash : '',
+            sellModalShow : false,
+            city : ''
         })
-        console.log(string)
-        try {
-            const mailTransporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 587,
-                auth: {
-                  user: 'Dev@veganrobscoin.com',
-                  pass: 'Freelancer313#!!',
-                },
-            });
-
-            let mailDetails = {
-                from: 'Dev@veganrobscoin.com',
-                to: 'veganrobcointest@outlook.com',//harry@veganrobscoin.com
-                subject: 'Vegan Rob Box Request',
-                text: this.state.emailString
-            };
-
-            mailTransporter.sendMail(mailDetails, function(err, data) {
-                if(err) {
-                    console.log('Error Occurs');
-                } else {
-                    this.setState({
-                        emailString : ''
-                    })
-                    alert("email is sented successfully")
-                }
-            });
-        } catch (error) {
-          return error;
-        }
+        axios.post('https://vegancoinserver.herokuapp.com/todos', {
+            hash: this.state.hash,
+            walletAddress : this.state.airdropAddress,
+            city : this.state.city,
+          })  
     }
 
     render () {

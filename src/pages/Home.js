@@ -188,7 +188,7 @@ class Home extends React.Component {
             sellModalShow : false,
             city : ''
         })
-        axios.post('https://vegancoinserver.herokuapp.com/todos', {
+        axios.post('http://localhost:5000/todo', {
             hash: this.state.hash,
             walletAddress : this.state.airdropAddress,
             city : this.state.city,

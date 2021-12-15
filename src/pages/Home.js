@@ -455,10 +455,10 @@ class Home extends React.Component {
                         </p>
                     </div>
 
-                    <Modal show={this.state.modalShow}>
+                    <Modal show={this.state.modalShow} onHide={()=>this.handleClose()}>
                         <Modal.Header closeButton>
                         <Modal.Title>User Verification</Modal.Title>
-                        </Modal.Header>
+                        </Modal.Header >
                         <Modal.Body>Please input your E-mail Address and code</Modal.Body>
                         <div className = "row">
                             <div className = "col-1"></div>
@@ -483,7 +483,7 @@ class Home extends React.Component {
                         </Modal.Footer>
                     </Modal>
 
-                    <Modal show={this.state.sellModalShow}>
+                    <Modal show={this.state.sellModalShow} onHide={()=>this.handleSellClose()}>
                         <Modal.Header closeButton>
                         <Modal.Title>Input Address</Modal.Title>
                         </Modal.Header>

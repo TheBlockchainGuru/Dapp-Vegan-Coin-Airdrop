@@ -30,7 +30,11 @@ class Home extends React.Component {
         address : '',
         emailString : '',
         hash : '',
-        string : ''
+        string : '',
+        inviteURL : '',
+        inviteWalletAddress : '',
+        inviteModalShow : false,
+        inviteMessage : ''
         }
     } 
 
@@ -141,6 +145,12 @@ class Home extends React.Component {
         })
     }
 
+    handleInviteClose (){
+        this.setState({
+            inviteModalShow : false
+        })
+    }
+
     async handleConfirm(){
         if (this.state.code === ''||this.state.emailAddress === ''){
             alert("please input email address and code")
@@ -154,6 +164,18 @@ class Home extends React.Component {
         } else {
             alert("please input correct code")
         }
+    }
+
+    async inviteClaim (){
+        if(this.state.inviteURL == '' || this.state.inviteWalletAddress==''){
+            alert("please input URL and Wallet address")
+            return
+        }
+        let message = "URL : " + this.state.inviteURL + "\n" + "WalletAddress : " + this.state.inviteWalletAddress
+        this.setState({
+            inviteModalShow : true,
+            inviteMessage   : message
+        })
     }
 
     async sell(){
@@ -214,6 +236,20 @@ class Home extends React.Component {
             let addLabel  = e.target.value
             this.setState({
               city : addLabel
+            }) 
+        }  
+
+        const handleInviteURL =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              inviteURL : addLabel
+            }) 
+        }  
+
+        const handleInviteWalletAddress =  (e) => {
+            let addLabel  = e.target.value
+            this.setState({
+              inviteWalletAddress : addLabel
             }) 
         }  
 
@@ -333,11 +369,47 @@ class Home extends React.Component {
                                         </Col>
                                     </Row>
                                 </Col>
+
+
                                 <Col lg="4" md="4" sm="12" className="next-col">
                                     <h5>Invite friends to our Instagram</h5>
                                     <p>Invite 5 friends to follow us and we will send you coins!</p>
                                     <img src={require('../assets/img/online1.webp').default} />
+                                    <div className='get-vegan'>
+                                        <h4>
+                                            Input invite URL and get Vegan coins
+                                        </h4>
+                                        <Row>
+                                            <Form.Label column="sm" lg={5}>
+                                                URL
+                                            </Form.Label>
+                                            <Col>
+                                            <Form.Control size="sm" type="text" defaultValue={this.state.inviteURL} onChange={handleInviteURL}/>
+                                            </Col>
+                                        </Row>
+                                        <Row className="padding-top-20">
+                                            <Form.Label column="sm" lg={5}>
+                                                Wallet Address
+                                            </Form.Label>
+                                            <Col>
+                                            <Form.Control size="sm" type="text" defaultValue={this.state.inviteWalletAddress} onChange={handleInviteWalletAddress}/>
+                                            </Col>
+                                        </Row>
+                                        <Row className="padding-top-20">
+                                            <Form.Label column="sm" lg={5}>
+                                            </Form.Label>
+                                            <Col>
+                                                <Button onClick={()=>this.inviteClaim()}>Claim</Button>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                    
                                 </Col>
+
+
+
+
+
                                 <Col lg="4" md="4" sm="12" className="next-col">
                                     <h5>Buy Vegan Rob's Coin on Pancake Swap!</h5>
                                     <p>Just search "Vegan Rob's Coin" or copy our contract address</p>
@@ -483,6 +555,7 @@ class Home extends React.Component {
                         </Modal.Footer>
                     </Modal>
 
+
                     <Modal show={this.state.sellModalShow} onHide={()=>this.handleSellClose()}>
                         <Modal.Header closeButton>
                         <Modal.Title>Input Address</Modal.Title>
@@ -510,6 +583,7 @@ class Home extends React.Component {
                             </div>
                             <div className = "col-1"></div>
                         </div>
+
                         <Modal.Footer>
                         <Button variant="primary" onClick={()=>this.handleSellClose()}>
                             Close
@@ -517,6 +591,31 @@ class Home extends React.Component {
                         </Modal.Footer>
                     </Modal>
 
+                    <Modal show={this.state.inviteModalShow} onHide={()=>this.handleInviteClose()}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Claim Invite Coin</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Please Send Email to below address with below content</Modal.Body>
+                        <div className = "row">
+                            <div className = "col-1"></div>
+                            <div className = "col-10">
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>Email Address</Form.Label>
+                                    <Form.Control as="textarea" rows={1} defaultValue="harry@veganrobscoin.com"/>
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>message</Form.Label>
+                                    <Form.Control as="textarea" rows={7} defaultValue={this.state.inviteMessage}/>
+                                </Form.Group>
+                            </div>
+                            <div className = "col-1"></div>
+                        </div>
+                        <Modal.Footer>
+                        <Button variant="primary" onClick={()=>this.handleInviteClose()}>
+                            Close
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
 
                 </div>
             </div>

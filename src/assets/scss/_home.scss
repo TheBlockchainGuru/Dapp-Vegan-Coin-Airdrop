@@ -145,6 +145,14 @@
             img {
                 width: 100%;
             }
+            .next-col {
+                position: relative;
+                .get-vegan {
+                    position: absolute;
+                    bottom: 0px;
+
+                }
+            }
         }
         .padding-top-20 {
             padding-top: 20px;
@@ -638,6 +646,10 @@
                 }
                 .next-col {
                     padding-top: 3vw;
+                    position: inherit;
+                    .get-vegan {
+                        position: relative;
+                    }
                 }
             }
             .padding-top-20 {

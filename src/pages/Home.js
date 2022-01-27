@@ -506,7 +506,7 @@ class Home extends React.Component {
                     </div>
                     <div className="roadmap">
                         <Fade right duration={3000}>
-                            <img src={require('../assets/img/roadmap.webp').default} id="roadmap" style = {{width : '60%'}}/>
+                            <img src={require('../assets/img/roadmap2.webp').default} id="roadmap" style = {{width : '60%'}}/>
                         </Fade>
                         <div className="puff" id="puff1">
                             <img src={require('../assets/img/puff.webp').default} />
